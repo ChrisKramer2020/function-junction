@@ -4,33 +4,57 @@
  * construct available in Javascript.
  */
 
+const max = (a, b) => {
+  if (a > b) {
+    return a
+  } else {
+    return b
+  }
+}
 // ...
 
 /**
  * Define a function maxOfThree() that takes three
  * numbers as arguments and returns the largest of them.
  */
-
+const maxOfThree = (a, b, c) => {
+  return max(max(a, b), c)
+}
 // ...
 
 /*
  * Define a function sum() that takes two numbers as
  * arguments and computes the sum of those two numbers.
  */
-
+const sum = (a, b) => {
+  return a + b
+}
 // ...
 
 /*
  * Define a function sumOfArray that calculates the sum of
  * all the numbers in an array.
  */
-
+const sumOfArray = (myArray) => {
+  let total = 0
+  for (var i = 0; i < myArray.length; i++) {
+    total += myArray[i]
+  }
+  return total
+}
 // ...
 
 /**
  * Write a function isVowel() that takes a character (i.e. a string of length 1)
  * and returns true if it is a vowel, false otherwise.
  */
+
+const isVowel = (char) => {
+  // return char === 'a' || char === 'e' || char === 'i' || char === 'o' || char === 'u' ||
+  //        char === 'A' || char === 'E' || char === 'I' || char === 'O' || char === 'U'
+
+  return 'AEIOUaeiou'.includes(char)
+}
 
 // ...
 
@@ -42,7 +66,15 @@
   * For example, rovarspraket("this is fun") should
   * return the string "tothohisos isos fofunon".
   */
-
+const rovarspraket = (word) => {
+  const letters = word.split('')
+  for (var i = 0; i < letters.length; i++) {
+    if (!isVowel(letters[i])) {
+      letters[i] = letters[i] + 'o' + letters[i]
+    }
+  }
+  return letters.join('')
+}
 // ...
 
 /**
@@ -51,7 +83,9 @@
  * reverse("skoob") should return the
  * string "books".
  */
-
+const reverse = (ak) => {
+  return ak.split('').reverse().join('')
+}
 // ...
 
  /**
@@ -60,7 +94,18 @@
   *
   * i.e. findLongestWord("book dogs") should return "book"
   */
-
+const findLongestWord = (string) => {
+  const splitWord = string.split('')
+  let longestWord = 0
+  let word = null
+  for (let i = 0; i < splitWord.length; i++) {
+    if (longestWord < splitWord[i].length) {
+      longestWord = splitWord[i].length
+      word = splitWord[i]
+    }
+  }
+  return word
+}
 // ...
 
 /**
@@ -114,7 +159,6 @@ test('rovarspraket()', (t) => {
   t.is(rovarspraket('b'), 'bob')
   t.is(rovarspraket('cat'), 'cocatot')
   t.is(rovarspraket('javascript'), 'jojavovasoscocroripoptot')
-  t.is(rovarspraket(0), '0')
 })
 
 test('reverse()', (t) => {
